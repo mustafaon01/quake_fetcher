@@ -15,6 +15,8 @@ Also, store at least the last 100 earthquake information and show it as a table.
 
 ## Usage
 
-git clone https://github.com/mustafaon01/quake_fetcher.git
+``` git clone https://github.com/mustafaon01/quake_fetcher.git ```
 
-docker-compose up --build
+``` cd quake_fetcher ```
+
+``` docker-compose up --build ```
