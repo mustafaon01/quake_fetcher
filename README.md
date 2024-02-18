@@ -8,7 +8,7 @@ Also, store at least the last 100 earthquake information and show it as a table.
 ## Used Technologies
 
 - ORM for storing and querying data
-- Postgresql Offical Docker Image
+- Postgresql
 - Docker & Docker-Compose
 - Python
 
