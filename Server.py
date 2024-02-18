@@ -5,6 +5,7 @@ from Logger import *
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
 from random import choice
+
 import requests
 import os
 import json
@@ -149,11 +150,11 @@ class DatabaseManager:
 
 
 class APIManager:
-    """Class to handle external API interactions."""
+    """ For API managing class."""
 
     @staticmethod
     def get_unsplash_photo(query):
-        """Fetches a photo from Unsplash based on the query.
+        """ Fetches a photo from Unsplash based on the query.
         param: query: str representing the search query key.
         return: URL of the first photo if successful, None otherwise.
         """
@@ -173,7 +174,7 @@ class APIManager:
 
 
 def create_app():
-    """Factory function to create and configure the Flask app."""
+    """ Function to create and configure the Flask app."""
     app = Flask(__name__)
     app.config.from_object(Config)
 
@@ -182,7 +183,7 @@ def create_app():
 
     @app.route('/api/earthquakes', methods=['POST'])
     def add_earthquake_page():
-        """add earthquake data."""
+        """ Add earthquake data. """
         try:
             raw_data = request.get_json()
             json_data = json.loads(raw_data)
@@ -193,7 +194,7 @@ def create_app():
 
     @app.route('/home', methods=['GET'])
     def home_page():
-        """display home page with earthquake data."""
+        """ Display home page with earthquake data."""
         all_earthquakes = DatabaseManager.get_all_earthquakes()
         status_data = DatabaseManager.last_quake_status()
 

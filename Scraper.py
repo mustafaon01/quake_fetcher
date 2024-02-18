@@ -6,7 +6,6 @@ import requests
 import json
 import os
 
-
 # Start log config
 Logger.setup_logging()
 load_dotenv()
@@ -66,10 +65,8 @@ class Scraper:
 
         try:
             # Send Post request the earthquake data to the specified endpoint.
-            response = requests.post('http://flask_container:5000/api/earthquakes', json=json_data, headers=headers)
+            response = requests.post(f'http://{os.getenv("CONTAINER_A")}:5000/api/earthquakes', json=json_data,
+                                     headers=headers)
             logging.info(f"{response.status_code} request is ok")
         except requests.RequestException as e:
             logging.error(f'An error occurred while requesting flask container: {response.status_code}')
-
-
-
