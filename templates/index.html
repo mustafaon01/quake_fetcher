@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Earthquakes</title>
+    <style>
+        iframe {
+            display: block;
+            width: 90%;
+            max-width: 60rem;
+            height: 25em;
+            margin: 2rem auto;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<h1>Son Veri Durumu</h1>
+{% if status_data.message %}
+<div>{{ status_data.message }}</div>
+<table border="3">
+    {% if status_data.quake_info %}
+    <tr>
+        <th>Tarih(TS)</th>
+        <th>Enlem</th>
+        <th>Boylam</th>
+        <th>Derinlik(Km)</th>
+        <th>Tip</th>
+        <th>Büyüklük</th>
+        <th>Yer</th>
+    </tr>
+    <tr>
+        <td>{{ status_data.quake_info.date }}</td>
+        <td>{{ status_data.quake_info.latitude }}</td>
+        <td>{{ status_data.quake_info.longitude }}</td>
+        <td>{{ status_data.quake_info.depth }}</td>
+        <td>{{ status_data.quake_info.type }}</td>
+        <td>{{ status_data.quake_info.magnitude }}</td>
+        <td>{{ status_data.quake_info.place }}</td>
+    </tr>
+    {% endif %}
+</table>
+{% if status_data.image_url %}
+    <img src="{{ status_data.image_url }}" alt="Deprem Resmi">
+{% endif %}
+{% endif %}
+
+<h1>Rastgele Bir Deprem</h1>
+<table border="3">
+    <tr>
+        <th>Tarih(TS)</th>
+        <th>Enlem</th>
+        <th>Boylam</th>
+        <th>Derinlik(Km)</th>
+        <th>Tip</th>
+        <th>Büyüklük</th>
+        <th>Yer</th>
+    </tr>
+    <tr>
+        <td>{{ random_earthquake.date }}</td>
+        <td>{{ random_earthquake.latitude }}</td>
+        <td>{{ random_earthquake.longitude }}</td>
+        <td>{{ random_earthquake.depth }}</td>
+        <td>{{ random_earthquake.type }}</td>
+        <td>{{ random_earthquake.magnitude }}</td>
+        <td>{{ random_earthquake.place }}</td>
+    </tr>
+</table>
+<iframe src="//maps.google.com/maps?q={{ random_earthquake.latitude }},{{ random_earthquake.longitude }}&z=15&output=embed"></iframe>
+{% if image_url %}
+    <img src="{{ image_url }}" alt="Deprem Resmi">
+{% endif %}
+<h1>Tüm Depremler</h1>
+<table border="1">
+    <tr>
+        <th>Tarih(TS)</th>
+        <th>Enlem</th>
+        <th>Boylam</th>
+        <th>Derinlik(Km)</th>
+        <th>Tip</th>
+        <th>Büyüklük</th>
+        <th>Yer</th>
+    </tr>
+    {% for earthquake in earthquakes %}
+    <tr>
+        <td>{{ earthquake.date }}</td>
+        <td>{{ earthquake.latitude }}</td>
+        <td>{{ earthquake.longitude }}</td>
+        <td>{{ earthquake.depth }}</td>
+        <td>{{ earthquake.type }}</td>
+        <td>{{ earthquake.magnitude }}</td>
+        <td>{{ earthquake.place }}</td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
